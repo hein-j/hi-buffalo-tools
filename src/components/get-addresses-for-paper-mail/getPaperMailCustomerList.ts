@@ -14,12 +14,14 @@ export function getCSVFromJSON(records: any[]) {
   return stringify(records, { header: true });
 }
 
-export function getPaperMailCustomerList(fieldEntriesCSV: string) {
+export async function getPaperMailCustomerList(fieldEntriesCSV: string) {
   function getValueFromInfo(info: any, key: string) {
     return info[key]?.value ?? "";
   }
+  console.log("run");
   const fieldEntriesJSON = getJSONFromCSV(fieldEntriesCSV);
 
+  console.log("got json");
   const customers = fieldEntriesJSON.reduce(
     (acc: any, curr: any) => {
       const fieldName = curr["Field name"];
@@ -48,6 +50,7 @@ export function getPaperMailCustomerList(fieldEntriesCSV: string) {
       };
     }
   );
+  console.log("reduced 1");
 
   const customersOptingPaper = Object.entries(customers).reduce(
     (acc, [email, info]: [string, any]) => {
@@ -73,6 +76,7 @@ export function getPaperMailCustomerList(fieldEntriesCSV: string) {
     },
     [] as any
   );
+  console.log("reduced 2");
 
   return getCSVFromJSON(customersOptingPaper);
 }

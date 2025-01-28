@@ -41,17 +41,21 @@ export const GetAddressesForPaperMail = () => {
             setStatusText("Working...");
             const reader = new FileReader();
             reader.readAsText(file);
-            reader.onload = () => {
+            reader.onload = async () => {
               try {
                 if (reader.result) {
                   if (typeof reader.result !== "string") {
                     throw new Error("Reader read file as Array Buffer!");
                   }
-                  const csvContent = getPaperMailCustomerList(reader.result);
+                  const csvContent = await getPaperMailCustomerList(
+                    reader.result
+                  );
+                  console.log("wrotecsv");
                   const fileName = "customers-opting-paper.csv";
                   const csvFile = new File([csvContent], fileName, {
                     type: "text/plain",
                   });
+                  console.log("wrote file");
                   setDownloadLinkSettings({
                     show: true,
                     href: URL.createObjectURL(csvFile),
