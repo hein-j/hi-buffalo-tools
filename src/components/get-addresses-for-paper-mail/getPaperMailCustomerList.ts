@@ -74,7 +74,5 @@ export function getPaperMailCustomerList(fieldEntriesCSV: string) {
     [] as any
   );
 
-  console.log(JSON.stringify(customersOptingPaper));
-
   return getCSVFromJSON("addresses", customersOptingPaper);
 }

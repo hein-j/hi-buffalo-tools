@@ -35,8 +35,6 @@ export const GetAddressesForPaperMail = () => {
         name="momence-csv"
         accept=".csv"
         onChange={(e) => {
-          console.log("change");
-          console.log("FILES", e.target.files);
           const file = e.target.files?.[0];
           if (file) {
             setInputIsDisabled(true);
@@ -50,7 +48,6 @@ export const GetAddressesForPaperMail = () => {
                     throw new Error("Reader read file as Array Buffer!");
                   }
                   const csvContent = getPaperMailCustomerList(reader.result);
-                  console.log(csvContent);
                   const fileName = "customers-opting-paper.csv";
                   const csvFile = new File([csvContent], fileName, {
                     type: "text/plain",
@@ -68,7 +65,6 @@ export const GetAddressesForPaperMail = () => {
               }
             };
             reader.onerror = () => {
-              console.log(reader.error);
               setStatusText("Error: " + e);
             };
           }
