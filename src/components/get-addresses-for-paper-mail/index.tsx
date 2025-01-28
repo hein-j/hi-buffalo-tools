@@ -50,12 +50,10 @@ export const GetAddressesForPaperMail = () => {
                   const csvContent = await getPaperMailCustomerList(
                     reader.result
                   );
-                  console.log("wrotecsv");
                   const fileName = "customers-opting-paper.csv";
                   const csvFile = new File([csvContent], fileName, {
                     type: "text/plain",
                   });
-                  console.log("wrote file");
                   setDownloadLinkSettings({
                     show: true,
                     href: URL.createObjectURL(csvFile),
