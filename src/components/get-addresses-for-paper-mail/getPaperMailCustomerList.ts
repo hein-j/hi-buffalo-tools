@@ -10,7 +10,7 @@ export function getJSONFromCSV(csv: string, objname?: string) {
   });
 }
 
-export function getCSVFromJSON(pathName: string, records: any[]) {
+export function getCSVFromJSON(records: any[]) {
   return stringify(records, { header: true });
 }
 
@@ -74,5 +74,5 @@ export function getPaperMailCustomerList(fieldEntriesCSV: string) {
     [] as any
   );
 
-  return getCSVFromJSON("addresses", customersOptingPaper);
+  return getCSVFromJSON(customersOptingPaper);
 }
